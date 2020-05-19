@@ -1,0 +1,12 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+
+body{
+    padding-top: 70px!important;
+}
+
+#user_part{
+	padding-right: 10px!important;
+}

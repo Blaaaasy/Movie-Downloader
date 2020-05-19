@@ -1,0 +1,35 @@
+{% extends 'movie/movie_base.html' %}
+{% load staticfiles %}
+{% block title %}全体电影列表{% endblock %}
+{% block tables %}
+    <br>
+    <br>
+    <thead>
+		<th>id</th><th>电影名</th> <td>评分</td>  <th>语言</th> <th>时长</th>
+	</thead>
+	{% for movie in movies %}
+        <tbody>
+		<tr>
+			<td>{{ movie.id }}</td>
+			<td>
+				<a href="#">{{ movie.name }}</a>
+            </td>
+			<td>{{ movie.score }}</td>
+			<td>{{ movie.language }}</td><td>{{ movie.time }}</td>
+		</tr>
+	    </tbody>
+	{% empty %}
+        <tbody>
+            <h3>---暂无信息---</h3>
+        </tbody>
+{%endfor%}
+
+
+
+{% endblock %}
+{% block mainbody %}
+
+
+
+
+{% endblock %}

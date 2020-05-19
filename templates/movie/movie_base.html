@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <title>{% block title %}{% endblock %}</title>
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
 <style>
@@ -12,7 +13,7 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-        <a class="navbar-brand" href="#">电影查询系统</a>
+        <a class="navbar-brand" href="{% url 'index' %}">电影查询系统</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -20,7 +21,7 @@
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="{% url 'index' %}">主页 <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="#">主页 <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">推荐</a>
@@ -32,7 +33,7 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">分类</a>
                 <div class="dropdown-menu" aria-labelledby="dropdown01">
-                    {% for categroy_n in categroys_list_all %}
+                {% for categroy_n in categroys_list_all %}
                         <a class="dropdown-item" href="#">
                             {{ categroy_n.categroy }}
                             </a>
@@ -41,8 +42,6 @@
                                 --未添加任何类别信息--
                             </a>
                     {% endfor %}
-
-
                 </div>
             </li>
             </ul>
@@ -52,14 +51,55 @@
             </form>
         </div>
     </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-2 col-md-3">
+                <br>
+                <br>
+                <ul >
+                      <li class="{% block first-active %}{% endblock %}"><a href="{% url 'movies_list' %}">全体电影表单<span class="sr-only">(current)</span></a></li>
+                  </ul>
+
+                    <ul >
+                        {% for categroy_n in categroys_list_all %}
+                            <li><a href="#">
+                                {{ categroy_n.categroy }}
+                            </a></li>
+
+                        {% empty %}
+                            <li><a href="#">
+                                --未添加任何电影类别信息--
+                            </a></li>
+                        {% endfor %}
+                      </ul>
+
+                    </div>
+            <div class="col-10 col-md-9">
+                  <h1 class="page-header">{% block page-header %}{% endblock %}</h1>
+                    <div class="img-or-details">
+                      {% block img-or-details %}{% endblock %}
+                    </div>
+
+                  <h2 class="sub-header">{% block sub-header %}{% endblock %}</h2>
+                    <div>
+                        <table class="table table-bordered table-hover">
+                              {% block tables %}{% endblock %}
+                        </table>
+                        {% block more %}{% endblock %}
+                    </div>
+            </div>
+        </div>
+    </div>
+
     <main role="main">
         {% block mainbody %}
-            <p>original</p>
+
         {% endblock %}
     </main>
     <footer class="container">
         <p>© Company 2020 成员：池诗玥 马志濠 胡展翊 沈鑫 刘廷杰</p>
     </footer>
+    
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>

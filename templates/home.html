@@ -1,12 +1,14 @@
+
 {%extends "base.html" %}
- 
+{% load staticfiles %}
+{% block title %}首页{% endblock %}
 {% block mainbody %}
 <br /><br />
 <div class="jumbotron">
     <div class="container">
       <h1 class="display-3">欢迎！</h1>
       <p>这里有海量电影资源供您选择</p>
-      <p><a class="btn btn-primary btn-lg" href="#" role="button">浏览全部 »</a></p>
+      <p><a class="btn btn-primary btn-lg" href="{% url 'movies_list' %}" role="button">浏览全部 »</a></p>
     </div>
 </div>
 <div class="container">
